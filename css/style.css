@@ -1,0 +1,123 @@
+@import url("photographer.css");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+    margin-top: 1%;
+}
+
+h1 {
+    color: #901C1C;
+    margin-right: 100px;
+    font-weight: 400;
+}
+
+.logoHeader {
+    margin-left: 100px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.photographer_section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.photographer_section article {
+    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.photographer_section a {
+    text-align: center;
+    text-decoration: none;
+}
+
+.photographer_section article h2 {
+    color: #D3573C;
+    font-size: 36px;
+    padding-top: 10px;
+    font-weight: 400;
+}
+
+.photographer_section article img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.photographer_section article p {
+    color: #D3573C;
+}
+
+.photographer_section article .tagLine {
+    padding: 5px 0;
+    font-weight: 400;
+}
+.photographer_section article .prices {
+    color: grey;
+    font-weight: 400;
+}
+
+/* RESPONSIVE - Desktop */ 
+@media screen and (max-width: 1279px) {
+
+    .photographer_section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    article {
+        margin-bottom: 50px;
+    }
+
+}
+
+/* RESPONSIVE - Tablette */ 
+@media screen and (max-width: 767px) {
+
+    header {
+        flex-direction: column;
+        margin-top: 50px;
+    }
+
+    .logoHeader {
+        margin: 0;
+    }
+
+    h1 {
+        margin-right: 0;
+    }
+
+    .photographer_section {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 70px;
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+}
