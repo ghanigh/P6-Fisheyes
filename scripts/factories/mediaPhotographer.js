@@ -1,4 +1,4 @@
-// Fonction récupérant les infos sur le profil du photographe 
+// Fonction récupére les infos du profil du photographe 
 function photographerInfosHeader(photographer) {
     const photographerHeader = document.querySelector(".photograph-header");
     const { name, portrait, city, country, tagline } = photographer;
@@ -26,7 +26,7 @@ function photographerInfosContact(photographer) {
 	contactName.innerHTML = `Contactez-moi <br> ${name}`;
 }
 
-/* Factory Media permettant de trier image et vidéo */
+/* Factory Media permet de trier image et vidéo */
 class MediaFactory {
 	constructor(media, controls) {
 		this.media = media
@@ -37,7 +37,7 @@ class MediaFactory {
 		if (this.media.image) {
 			return `<img class="imgGalery" src="assets/photos/${this.media.photographerId}/${this.media.image}" alt="${this.media.title}">`
 		} else { 
-			// Affichage de manière conditionnelle les controls de la video (non affichés en gallerie, affichés en Lightbox)
+			// Affiche de manière conditionnelle les controles de video (non affichés en gallerie, affichés en Lightbox)
 			const video = document.createElement('video');
 			video.innerHTML = `<source src="assets/photos/${this.media.photographerId}/${this.media.video}" type="video/mp4">`
 			video.classList.add('imgGalery');
@@ -50,13 +50,13 @@ class MediaFactory {
 
 }
 
-// Fonction de création de la galerie photos des photographes
+// Fonction pour la création de la galerie photos des photographes
 function photographerMediaFactory(media) {
 
 	const { title } = media;
 	let likes = media.likes;
 
-	// Création du DOM lightbox
+	// DOM lightbox
 	function createLightboxDOM() {
 		const mediaItem = document.createElement('li');
 		const mediaFactory = new MediaFactory(media, true);
@@ -67,7 +67,7 @@ function photographerMediaFactory(media) {
 		return mediaItem;
 	}
 
-	// Création du DOM galerie 
+	// DOM galerie 
 	function CreateGaleryDom(idx) {
 		const BlocPhotographerGalery = document.querySelector(".photographer-galery");
 		BlocPhotographerGalery.classList.add("container");
@@ -78,7 +78,7 @@ function photographerMediaFactory(media) {
 		photographerMedia.setAttribute("aria-controls", "modal");
 		photographerMedia.setAttribute("aria-label", `${title}`);
 
-		// Section ajoutant les informations de la photo 
+		// Ajout des informations de la photo 
 		const photographerArticleInfos = document.createElement("div");
 		photographerArticleInfos.classList.add("photographer-galery-item-info");
 		const photographerArticleTitle = document.createElement("h2");
@@ -86,7 +86,7 @@ function photographerMediaFactory(media) {
 		photographerArticleTitle.textContent = `${title}`;
 		photographerArticleInfos.appendChild(photographerArticleTitle);
 
-		// Section ajoutant les likes sur les photos
+		// Ajout des likes sur les photos
 		const likesElement = document.createElement('button');
 		likesElement.classList.add("btn-like-photo")
 		const likesHeart = document.createElement('i');
@@ -97,7 +97,7 @@ function photographerMediaFactory(media) {
 		likesElement.appendChild(likesHeart);
 		photographerArticleInfos.appendChild(likesElement);
 
-		// Appel de la media factory pour créer les vignettes 
+		// Appel Media factory pour crée les vignettes 
 		const mediaFactory = new MediaFactory(media, false);
 		photographerMedia.classList.add('photographer-galery-media');
 		photographerMedia.setAttribute('data-idx', idx);
@@ -106,7 +106,7 @@ function photographerMediaFactory(media) {
 		photographerArticle.appendChild(photographerMedia);
 		photographerArticle.appendChild(photographerArticleInfos);
 
-		/* Ajout au clic d'un like par photo */ 
+		/* Ajout du clic pour un like par photo */ 
 		likesElement.addEventListener('click', () => {
 			likes += 1;
 			likesCount.innerText = likes;
@@ -119,7 +119,7 @@ function photographerMediaFactory(media) {
 	return { CreateGaleryDom, createLightboxDOM };
 }
 
-/* Fonction de création du bloc likes & price total en base de page */
+/* Création du bloc likes et price total en bas de la page */
 function getLikesPrice (media, photographer) {
 	const blocLikesPrice = document.querySelector("#likes-price");
 
@@ -138,7 +138,7 @@ function getLikesPrice (media, photographer) {
 	const likeCount = media.reduce((acc, curr) => acc + curr.likes, 0 );
 	totalLike.innerHTML = likeCount;
 
-	/* Affichage du prix journalier par photographe */ 
+	/* Affichage du prix journalier des photographes */ 
 	const photographerPrice = document.createElement("span");
 	photographerPrice.setAttribute("aria-label", "Tarif journalier du photographe");
 	photographerPrice.className = "photographer-price";
@@ -146,7 +146,7 @@ function getLikesPrice (media, photographer) {
 	photographerPrice.innerHTML = `${photographer.price}€ / jour`;
 }
 
-/* Fonction d'affichage de la modal lightbox */ 
+/* Affichage de la modal lightbox */ 
 const lightboxModal = document.getElementsByClassName("lightbox-container");
 function displayLightbox() {
 	lightboxModal.style.display = "block";
