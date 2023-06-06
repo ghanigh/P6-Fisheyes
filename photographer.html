@@ -20,7 +20,7 @@
 
       <!-- Informations Photographe -->
       <div class="photograph-header">
-        <button class="infos-contact-button" onclick="displayModal()">Contactez-moi</button>
+        <button class="infos-contact-button" id="contactButton">Contactez-moi</button>
       </div>
    
       <!-- Menu select de tri des photos -->
@@ -67,7 +67,7 @@
           <div>
             <h2 id="contact-name">Contactez-moi</h2>
           </div>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="Fermeture modale contact" aria-label="Bouton de fermeture de la fenêtre de contact">
+          <img src="assets/icons/close.svg" id="closeModalButton" alt="Fermeture modale contact" aria-label="Bouton de fermeture de la fenêtre de contact">
         </header>
 
         <form id="contact">
@@ -79,12 +79,10 @@
           <div>
             <label for="nom">Nom</label>
             <input type="text" name="nom" id="nom" required>
-            <span class="error-message">Merci de renseigner votre nom</span>
           </div>
           <div>
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required>
-            <span class="error-message">Merci de renseigner une adresse mail valide</span>
           </div>
           <div>
             <label for="message">Votre message</label>
@@ -94,11 +92,23 @@
         </form>        
 			</div>
 		</div>  
-
     <script src="scripts/utils/contactForm.js"></script>
     <script src="scripts/factories/mediaPhotographer.js"></script>
     <script src="scripts/pages/photographer.js"></script>
     <script src="https://kit.fontawesome.com/dc83823775.js" crossorigin="anonymous"></script>
-    
+
+    <script>
+      // Event Listener pour le bouton "Contactez-moi"
+      const contactButton = document.getElementById('contactButton');
+      contactButton.addEventListener('click', function() {
+        displayModal();
+      });
+
+      // Event Listener pour le bouton de fermeture de la fenêtre de contact
+      const closeModalButton = document.getElementById('closeModalButton');
+      closeModalButton.addEventListener('click', function() {
+        closeModal();
+      });
+    </script>
   </body>
 </html>

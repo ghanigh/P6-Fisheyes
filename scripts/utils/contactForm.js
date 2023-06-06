@@ -28,3 +28,4 @@ window.addEventListener("keyup", (e) => {
 		closeModal();
 	}
 });
+

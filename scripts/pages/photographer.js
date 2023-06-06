@@ -225,3 +225,40 @@ async function init() {
 	setContactFormEvent()
 }
 init();
+
+// Événements du formulaire de contact
+function setContactFormEvent() {
+	const form = document.getElementById("contact");
+	form.addEventListener("submit", (event) => {
+	  event.preventDefault(); // Empêche la soumission du formulaire
+  
+	  // Vérification des champs
+	  const nameField = document.getElementById("name");
+	  const emailField = document.getElementById("email");
+	  const messageField = document.getElementById("message");
+  
+	  if (nameField.value.trim() === "") {
+		console.log("Veuillez saisir votre nom.");
+		return;
+	  }
+  
+	  if (emailField.value.trim() === "") {
+		console.log("Veuillez saisir votre adresse e-mail.");
+		return;
+	  }
+  
+	  if (messageField.value.trim() === "") {
+		console.log("Veuillez saisir un message.");
+		return;
+	  }
+  
+	  // Affichage des valeurs dans la console
+	  console.log("Nom:", nameField.value);
+	  console.log("Email:", emailField.value);
+	  console.log("Message:", messageField.value);
+  
+	  // Réinitialisation des champs du formulaire
+	  form.reset();
+	});
+  }
+  
