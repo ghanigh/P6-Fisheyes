@@ -136,23 +136,26 @@
   prenomInput.addEventListener('input', function() {
     if (prenomInput.value.trim() === '') {
       displayErrorMessage('prenomError', 'Veuillez saisir votre prénom.');
+    } else if (prenomInput.value.trim().length < 2) {
+      displayErrorMessage('prenomError', 'Le prénom doit comporter au moins 2 caractères.');
+    } else if (!/^[a-zA-Z]+$/.test(prenomInput.value.trim())) {
+      displayErrorMessage('prenomError', 'Le prénom ne peut pas contenir de chiffres ou de symboles.');
     } else {
       clearErrorMessage('prenomError');
     }
   });
 
-  //
   // Vérification du nom
   const nomInput = document.getElementById('nom');
   const nomError = document.getElementById('nomError');
 
   nomInput.addEventListener('input', function() {
-    const regex = /^\d+$/; // Expression régulière pour vérifier si le nom contient uniquement des chiffres
-
     if (nomInput.value.trim() === '') {
       displayErrorMessage('nomError', 'Veuillez saisir votre nom.');
-    } else if (regex.test(nomInput.value.trim())) {
-      displayErrorMessage('nomError', 'Le nom ne peut pas contenir uniquement des chiffres.');
+    } else if (nomInput.value.trim().length < 2) {
+      displayErrorMessage('nomError', 'Le nom doit comporter au moins 2 caractères.');
+    } else if (!/^[a-zA-Z]+$/.test(nomInput.value.trim())) {
+      displayErrorMessage('nomError', 'Le nom ne peut pas contenir de chiffres ou de symboles.');
     } else {
       clearErrorMessage('nomError');
     }
