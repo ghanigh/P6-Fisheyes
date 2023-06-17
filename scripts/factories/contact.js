@@ -1,8 +1,9 @@
 const modal = document.getElementById("contact-modal");
+const main = document.getElementById("main");
+
 
 // Afficher la modal de contact
 function displayModal() {
-  const modal = document.getElementById("contact-modal");
   modal.style.display = "block";
   if (modal.hasAttribute("aria-hidden") && main.hasAttribute("aria-hidden")) {
     modal.setAttribute("aria-hidden", "false");
@@ -14,7 +15,6 @@ function displayModal() {
 
 // Fermeture de la modal de contact
 function closeModal() {
-  const modal = document.getElementById("contact-modal");
   modal.style.display = "none";
   if (modal.hasAttribute("aria-hidden") && main.hasAttribute("aria-hidden")) {
     modal.setAttribute("aria-hidden", "true");
@@ -104,4 +104,3 @@ function setContactFormEvent() {
 }
 
 setContactFormEvent();
-``
