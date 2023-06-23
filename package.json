@@ -1,0 +1,20 @@
+{
+  "name": "p6-fisheyes",
+  "version": "1.0.0",
+  "description": "Ce projet consiste à développer un prototype fonctionnel d'un nouveau site web pour FishEye, une plateforme permettant aux photographes indépendants de présenter leurs meilleurs travaux. L'objectif est de créer un site conforme aux maquettes fournies et respectant les exigences d'accessibilité.",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .js,.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghanigh/P6-Fisheyes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ghanigh/P6-Fisheyes/issues"
+  },
+  "homepage": "https://github.com/ghanigh/P6-Fisheyes#readme"
+}
