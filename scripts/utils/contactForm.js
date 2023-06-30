@@ -1,6 +1,8 @@
+/* eslint-disable no-undef */
 const modal = document.getElementById("contact-modal");
 
 // Afficher la modal de contact
+// eslint-disable-next-line no-unused-vars
 function displayModal() {
     const modal = document.getElementById("contact-modal");
 	modal.style.display = "block";
@@ -28,4 +30,3 @@ window.addEventListener("keyup", (e) => {
 		closeModal();
 	}
 });
-

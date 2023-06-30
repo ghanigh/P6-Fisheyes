@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function mediaFactory(data) {
     let type = data.video ? "video" : "image";
   
