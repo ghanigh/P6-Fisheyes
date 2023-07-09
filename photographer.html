@@ -102,32 +102,33 @@
 <script src="https://kit.fontawesome.com/dc83823775.js" crossorigin="anonymous"></script>
 
 <script>
-  // Event Listener pour le bouton "Contactez-moi"
+document.addEventListener('DOMContentLoaded', function() {
+  // Event Listener for the "Contactez-moi" button
   const contactButton = document.getElementById('contactButton');
   contactButton.addEventListener('click', function() {
     displayModal();
   });
 
-  // Event Listener pour le bouton de fermeture de la fenêtre de contact
+  // Event Listener for the close contact modal button
   const closeModalButton = document.getElementById('closeModalButton');
   closeModalButton.addEventListener('click', function() {
     closeModal();
   });
 
-  // Fonction pour afficher un message d'erreur
+  // Function to display an error message
   function displayErrorMessage(elementId, message) {
     const errorElement = document.getElementById(elementId);
     errorElement.textContent = message;
     errorElement.style.color = 'red';
   }
 
-  // Fonction pour effacer un message d'erreur
+  // Function to clear an error message
   function clearErrorMessage(elementId) {
     const errorElement = document.getElementById(elementId);
     errorElement.textContent = '';
   }
 
-  // Vérification du prénom
+  // Verification for the first name
   const prenomInput = document.getElementById('prenom');
   const prenomError = document.getElementById('prenomError');
 
@@ -143,7 +144,7 @@
     }
   });
 
-  // Vérification du nom
+  // Verification for the last name
   const nomInput = document.getElementById('nom');
   const nomError = document.getElementById('nomError');
 
@@ -159,12 +160,12 @@
     }
   });
 
-  // Vérification de l'email
+  // Verification for the email
   const emailInput = document.getElementById('email');
   const emailError = document.getElementById('emailError');
 
   emailInput.addEventListener('input', function() {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expression régulière pour vérifier si l'email est valide
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression to validate email address
 
     if (emailInput.value.trim() === '') {
       displayErrorMessage('emailError', 'Veuillez saisir votre email.');
@@ -175,7 +176,7 @@
     }
   });
 
-  // Vérification du message
+  // Verification for the message
   const messageInput = document.getElementById('message');
   const messageError = document.getElementById('messageError');
 
@@ -186,6 +187,7 @@
       clearErrorMessage('messageError');
     }
   });
+});
 </script>
 </body>
 </html>
