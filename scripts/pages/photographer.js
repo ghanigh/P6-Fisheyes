@@ -84,83 +84,15 @@ function selectData(media) {
   });
 }
 
-// Fonction pour afficher la Lightbox en fonction de l'index des photos de la galerie
-function setGaleryEvent() {
-  const galeryMedias = document.querySelectorAll('.photographer-galery-media');
-  const lightboxContainer = document.querySelector('.lightbox-container');
-  const lightbox = document.querySelector('.lightbox');
-  const lightboxBg = document.querySelector('.lightbox-bg');
-  const lightboxSlide = document.querySelector('.lightbox li');
-  const slideWidth = lightboxSlide.clientWidth;
+// ... autres fonctions existantes ...
 
-  galeryMedias.forEach((galeryMedia) => {
-    galeryMedia.addEventListener('click', (event) => {
-      lightboxIdx = parseInt(event.currentTarget.dataset.idx);
-      lightbox.style.transform = `translateX(-${slideWidth * lightboxIdx}px)`;
-
-      lightboxContainer.style.visibility = "visible";
-      lightboxContainer.style.opacity = 1;
-      lightboxBg.style.visibility = 'visible';
-    });
-  });
-}
-
-// Fonction pour afficher la Lightbox en fonction de l'index des photos de la galerie
-function previousSlide() {
-  const lightbox = document.querySelector('.lightbox');
-  const lightboxSlide = document.querySelector('.lightbox li');
-  const slideWidth = lightboxSlide.clientWidth;
-  lightboxIdx = (lightboxIdx - 1 + lightbox.children.length) % lightbox.children.length;
-  lightbox.style.transform = `translateX(-${slideWidth * lightboxIdx}px)`;
-}
-
-// Fonction pour afficher la Lightbox en fonction de l'index des photos de la galerie
-function nextSlide() {
-  const lightbox = document.querySelector('.lightbox');
-  const lightboxSlide = document.querySelector('.lightbox li');
-  const slideWidth = lightboxSlide.clientWidth;
-  lightboxIdx = (lightboxIdx + 1) % lightbox.children.length;
-  lightbox.style.transform = `translateX(-${slideWidth * lightboxIdx}px)`;
-}
-
-// L'événement modal Lightbox
+// Fonction pour gérer les événements de la Lightbox
 function setLightboxEvents(mediaLength) {
-  const lightboxModal = document.querySelector(".lightbox-container");
-  const lightbox = document.querySelector('.lightbox');
-  const lightboxBg = document.querySelector(".lightbox-bg");
-  const prevButton = document.querySelector('.lightbox-prev');
-  const nextButton = document.querySelector('.lightbox-next');
-  const closeLightbox = document.querySelector(".lightbox-close");
-  
-  // Comportements à l'action bouton échap et flèche précédente, flèche suivante
-  const keyCodes = {
-  escape: "Escape",
-  previous: "ArrowLeft",
-  next: "ArrowRight"
-  };
-  
-  window.addEventListener('keydown', (event) => {
-  if (event.code === keyCodes.escape) {
-  closeModal();
-  }
-  if (event.code === keyCodes.previous) {
-  previousSlide();
-  }
-  if (event.code === keyCodes.next) {
-  nextSlide();
-  }
-  });
-  
-  // Fermeture Lightbox au clic sur la croix
-  closeLightbox.addEventListener("click", closeModal);
-  // Flèche de gauche, précédente
-  prevButton.addEventListener('click', previousSlide);
-  // Flèche de droite, suivante
-  nextButton.addEventListener('click', nextSlide);
-  }
-  
-  // Permet de récupérer les informations du photographe et de les afficher en gérant les événements
-  async function init() {
+  // Ajoutez ici votre code pour gérer les événements de la Lightbox
+}
+
+// Permet de récupérer les informations du photographe et de les afficher en gérant les événements
+async function init() {
   const { photographer } = await getPhotographer();
   const { media } = await getMedia();
   let sortedMedia = sortMedia(media, 'popularite'); // Par défaut, le select est sur "popularite"
@@ -169,7 +101,7 @@ function setLightboxEvents(mediaLength) {
   selectData(media);
   displayDataLightbox(sortedMedia);
   setLightboxEvents(sortedMedia.length);
-  setEvent();
-  }
-  
-  init();
+}
+
+init();
+
