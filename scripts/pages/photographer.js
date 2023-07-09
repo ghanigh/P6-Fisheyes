@@ -34,13 +34,13 @@ async function displayDataPhotographer(photographer) {
 }
 
 // Affiche les photos dans la galerie dédiée
-async function displayDataGallery(media) {
-  const photographerGallery = document.querySelector('.photographer-gallery');
-  photographerGallery.innerHTML = '';
+async function displayDataGalery(media) {
+  const photographerGalery = document.querySelector('.photographer-galery');
+  photographerGalery.innerHTML = '';
   media.forEach((itemMedia, idx) => {
-    const photographerGalleryModel = photographerMediaFactory(itemMedia);
-    const userGalleryCardDOM = photographerGalleryModel.CreateGaleryDom(idx);
-    photographerGallery.appendChild(userGalleryCardDOM);
+    const photographerGaleryModel = photographerMediaFactory(itemMedia);
+    const userGaleryCardDOM = photographerGaleryModel.CreateGaleryDom(idx);
+    photographerGalery.appendChild(userGaleryCardDOM);
   });
 }
 
@@ -61,18 +61,14 @@ function sortMedia(media, triValue) {
     case "popularite": {
       return media.sort((a, b) => b.likes - a.likes);
     }
-
     case "date": {
       return media.sort((a, b) => new Date(a.date) - new Date(b.date));
     }
-
     case "titre": {
-      return media.sort((a, b) => {
-        if (a.title < b.title) {
-          return -1;
-        }
-        return 1;
-      });
+      return media.sort((a, b) => a.title.localeCompare(b.title));
+    }
+    default: {
+      return media;
     }
   }
 }
@@ -82,10 +78,49 @@ function selectData(media) {
   const select = document.querySelector('#select');
   select.addEventListener('change', (e) => {
     const sortedMedia = sortMedia(media, e.target.value);
-    displayDataGallery(sortedMedia);
+    displayDataGalery(sortedMedia);
     displayDataLightbox(sortedMedia);
-    setGalleryEvent();
+    setGaleryEvent();
   });
+}
+
+// Fonction pour afficher la Lightbox en fonction de l'index des photos de la galerie
+function setGaleryEvent() {
+  const galeryMedias = document.querySelectorAll('.photographer-galery-media');
+  const lightboxContainer = document.querySelector('.lightbox-container');
+  const lightbox = document.querySelector('.lightbox');
+  const lightboxBg = document.querySelector('.lightbox-bg');
+  const lightboxSlide = document.querySelector('.lightbox li');
+  const slideWidth = lightboxSlide.clientWidth;
+
+  galeryMedias.forEach((galeryMedia) => {
+    galeryMedia.addEventListener('click', (event) => {
+      lightboxIdx = parseInt(event.currentTarget.dataset.idx);
+      lightbox.style.transform = `translateX(-${slideWidth * lightboxIdx}px)`;
+
+      lightboxContainer.style.visibility = "visible";
+      lightboxContainer.style.opacity = 1;
+      lightboxBg.style.visibility = 'visible';
+    });
+  });
+}
+
+// Fonction pour afficher la Lightbox en fonction de l'index des photos de la galerie
+function previousSlide() {
+  const lightbox = document.querySelector('.lightbox');
+  const lightboxSlide = document.querySelector('.lightbox li');
+  const slideWidth = lightboxSlide.clientWidth;
+  lightboxIdx = (lightboxIdx - 1 + lightbox.children.length) % lightbox.children.length;
+  lightbox.style.transform = `translateX(-${slideWidth * lightboxIdx}px)`;
+}
+
+// Fonction pour afficher la Lightbox en fonction de l'index des photos de la galerie
+function nextSlide() {
+  const lightbox = document.querySelector('.lightbox');
+  const lightboxSlide = document.querySelector('.lightbox li');
+  const slideWidth = lightboxSlide.clientWidth;
+  lightboxIdx = (lightboxIdx + 1) % lightbox.children.length;
+  lightbox.style.transform = `translateX(-${slideWidth * lightboxIdx}px)`;
 }
 
 // L'événement modal Lightbox
@@ -96,70 +131,45 @@ function setLightboxEvents(mediaLength) {
   const prevButton = document.querySelector('.lightbox-prev');
   const nextButton = document.querySelector('.lightbox-next');
   const closeLightbox = document.querySelector(".lightbox-close");
-  const lightboxSlide = document.querySelector('.lightbox li');
-  const slideWidth = lightboxSlide.clientWidth;
-
+  
   // Comportements à l'action bouton échap et flèche précédente, flèche suivante
   const keyCodes = {
-    escape: "Escape",
-    previous: "ArrowLeft",
-    next: "ArrowRight"
+  escape: "Escape",
+  previous: "ArrowLeft",
+  next: "ArrowRight"
   };
-
+  
   window.addEventListener('keydown', (event) => {
-    if (event.code === keyCodes.escape) {
-      closeModal();
-    }
-    if (event.code === keyCodes.previous) {
-      previousSlide();
-    }
-    if (event.code === keyCodes.next) {
-      nextSlide();
-    }
+  if (event.code === keyCodes.escape) {
+  closeModal();
+  }
+  if (event.code === keyCodes.previous) {
+  previousSlide();
+  }
+  if (event.code === keyCodes.next) {
+  nextSlide();
+  }
   });
-
+  
   // Fermeture Lightbox au clic sur la croix
   closeLightbox.addEventListener("click", closeModal);
   // Flèche de gauche, précédente
   prevButton.addEventListener('click', previousSlide);
   // Flèche de droite, suivante
   nextButton.addEventListener('click', nextSlide);
-
-  // Fonction pour afficher la Lightbox en fonction de l'index des photos de la galerie
-  function setGalleryEvent() {
-    const galleryMedias = document.querySelectorAll('.photographer-gallery-media');
-    const lightboxContainer = document.querySelector('.lightbox-container');
-    const lightbox = document.querySelector('.lightbox');
-    const lightboxBg = document.querySelector('.lightbox-bg');
-    const lightboxSlide = document.querySelector('.lightbox li');
-    const slideWidth = lightboxSlide.clientWidth;
-
-    galleryMedias.forEach((galleryMedia) => {
-      galleryMedia.addEventListener('click', (event) => {
-        lightboxIdx = parseInt(event.currentTarget.dataset.idx);
-        lightbox.style.transform = `translateX(-${slideWidth * lightboxIdx}px)`;
-
-        lightboxContainer.style.visibility = "visible";
-        lightboxContainer.style.opacity = 1;
-        lightboxBg.style.visibility = 'visible';
-      });
-    });
   }
-
+  
   // Permet de récupérer les informations du photographe et de les afficher en gérant les événements
   async function init() {
-    console.log('passer-par-la'
-    )
-    const { photographer } = await getPhotographer();
-    const { media } = await getMedia();
-    let sortedMedia = sortMedia(media, 'popularite'); // Par défaut, le select est sur "popularite"
-    displayDataPhotographer(photographer);
-    displayDataGallery(sortedMedia);
-    selectData(media);
-    displayDataLightbox(sortedMedia);
-    setLightboxEvents(media.length);
-    setGalleryEvent();
+  const { photographer } = await getPhotographer();
+  const { media } = await getMedia();
+  let sortedMedia = sortMedia(media, 'popularite'); // Par défaut, le select est sur "popularite"
+  displayDataPhotographer(photographer);
+  displayDataGalery(sortedMedia);
+  selectData(media);
+  displayDataLightbox(sortedMedia);
+  setLightboxEvents(sortedMedia.length);
+  setEvent();
   }
-
+  
   init();
-}

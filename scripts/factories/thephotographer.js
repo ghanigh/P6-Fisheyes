@@ -64,13 +64,13 @@ function photographerFactory(data) {
   
   // Dans le fichier photographer.js
   
-  // Déclaration de l'objet photographerGalleryModel
+  // Déclaration de l'objet photographerGaleryModel
   // eslint-disable-next-line no-unused-vars
-  const photographerGalleryModel = {
+  const photographerGaleryModel = {
     // Autres propriétés et méthodes de l'objet...
   
     // Fonction pour créer la galerie des photos du photographe
-    CreateGalleryDom: function () {
+    CreateGaleryDom: function () {
       // Implémentation de la fonction...
     }
   };
