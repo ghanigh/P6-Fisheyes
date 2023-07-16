@@ -79,6 +79,10 @@ function photographerInfosHeader(photographer) {
 	  photographerMedia.setAttribute('href', "#");
 	  photographerMedia.setAttribute("aria-controls", "modal");
 	  photographerMedia.setAttribute("aria-label", `${title}`);
+	  document.addEventListener('DOMContentLoaded', () => {
+  // Votre code ici, y compris l'ajout de l'écouteur d'événement pour les likes
+});
+
   
 	  // Ajout des informations de la photo
 	  const photographerArticleInfos = document.createElement("div");
@@ -112,9 +116,14 @@ function photographerInfosHeader(photographer) {
 		likes += 1;
 		likesCount.innerText = likes;
 		const totalLike = document.querySelector('.total-like');
-		totalLike.innerText = parseInt(totalLike.innerText) + 1;
+		if (totalLike !== null) {
+		  totalLike.innerText = parseInt(totalLike.innerText) + 1;
+		} else {
+		  console.error("L'élément avec la classe 'total-like' n'a pas été trouvé.");
+		}
 		likesElement.setAttribute('disabled', ''); // Ajouter un aria disabled une fois l'action effectuée pour indiquer à l'utilisateur qu'il ne peut liker qu'une fois chaque cliché
 	  });
+	  
 	  // eslint-disable-next-line no-mixed-spaces-and-tabs
 	  return photographerArticle;
 	}
