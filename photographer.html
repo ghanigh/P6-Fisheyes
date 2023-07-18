@@ -66,6 +66,17 @@
   <i class="fas fa-heart"></i>
 </div>
 
+<script>
+  // Supposons que totalLikes contienne le nombre total de likes
+  const totalLikes = 100; // Remplacez cela par la valeur réelle récupérée
+
+  // Récupérer l'élément span avec la classe "total-like"
+  const totalLikeElement = document.querySelector('.total-like');
+
+  // Mettre à jour le contenu de l'élément avec le nombre total de likes
+  totalLikeElement.textContent = totalLikes;
+</script>
+
 <!-- Affichage du prix journalier des photographes -->
 <span aria-label="Tarif journalier du photographe" class="photographer-price"></span>
 

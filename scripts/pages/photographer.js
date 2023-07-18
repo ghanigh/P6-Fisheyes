@@ -85,6 +85,10 @@ function selectData(media) {
 }
 
 // ... autres fonctions existantes ...
+function setGaleryEvent() {
+  // Code de la fonction setGaleryEvent
+  // ...
+}
 
 // Fonction pour gérer les événements de la Lightbox
 function setLightboxEvents(mediaLength) {
