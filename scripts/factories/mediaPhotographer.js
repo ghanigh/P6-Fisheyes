@@ -158,11 +158,14 @@ function photographerInfosHeader(photographer) {
 	photographerPrice.innerHTML = `${photographer.price}€ / jour`;
   }
   
-  /* Affichage de la modal lightbox */
-  const lightboxModal = document.querySelector(".lightbox-container");
-  // eslint-disable-next-line no-unused-vars
-  function displayLightbox() {
-	lightboxModal.style.display = "block";
-	document.querySelector("body").style.overflow = "hidden";
-  }
-  
+// Affichage de la modal lightbox
+const lightboxModal = document.querySelector(".lightbox-container");
+
+function displayLightbox(imageUrl) {
+  const lightboxImage = lightboxModal.querySelector('.lightbox img');
+  lightboxImage.setAttribute('src', imageUrl);
+
+  lightboxModal.setAttribute('aria-hidden', 'false');
+  document.querySelector("body").style.overflow = "hidden";
+}
+
