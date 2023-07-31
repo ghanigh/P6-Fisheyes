@@ -37,7 +37,7 @@ function photographerFactory(data) {
   }
   
   // Récupération des valeurs du formulaire de contact
-  /*const form = document.getElementById("contact");
+  const form = document.getElementById("contact");
   form.addEventListener("submit", handleSubmit);
   
   function handleSubmit(event) {
@@ -60,7 +60,7 @@ function photographerFactory(data) {
   
     // Réinitialiser le formulaire
     form.reset();
-  }*/
+  }
   
   // Dans le fichier photographer.js
   
