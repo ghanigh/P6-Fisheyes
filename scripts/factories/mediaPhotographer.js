@@ -80,7 +80,21 @@ function photographerInfosHeader(photographer) {
 	  photographerMedia.setAttribute("aria-controls", "modal");
 	  photographerMedia.setAttribute("aria-label", `${title}`);
 	  document.addEventListener('DOMContentLoaded', () => {
-  // Votre code ici, y compris l'ajout de l'écouteur d'événement pour les likes
+		document.addEventListener('DOMContentLoaded', () => {
+			const mediaItems = document.querySelectorAll('.photographer-galery-media'); // Sélectionne tous les médias de la galerie
+		  
+			mediaItems.forEach((mediaItem, idx) => {
+			  mediaItem.addEventListener('click', (event) => {
+				event.preventDefault(); // Empêche le comportement de lien par défaut
+		  
+				const mediaFactory = new MediaFactory(media, true);
+				const mediaUrl = mediaItem.getAttribute('href'); // Récupère l'URL de l'image
+		  
+				displayLightbox(mediaUrl); // Ouvre la lightbox avec l'URL de l'image
+			  });
+			});
+		  });
+		  
 });
 
   
