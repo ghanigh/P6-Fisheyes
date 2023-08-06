@@ -66,16 +66,6 @@
   <snap class="fas fa-heart"></snap>
 </div>
 
-<script>
-  // Supposons que totalLikes contienne le nombre total de likes
-  const totalLikes = 100; // Remplacez cela par la valeur réelle récupérée
-
-  // Récupérer l'élément span avec la classe "total-like"
-  const totalLikeElement = document.querySelector('.total-like');
-
-  // Mettre à jour le contenu de l'élément avec le nombre total de likes
-  totalLikeElement.textContent = totalLikes;
-</script>
 
 <!-- Affichage du prix journalier des photographes -->
 <span aria-label="Tarif journalier du photographe" class="photographer-price"></span>
@@ -90,7 +80,7 @@
       <img src="assets/icons/close.svg" id="closeModalButton" alt="Fermeture modale contact" aria-label="Bouton de fermeture de la fenêtre de contact">
     </header>
 
-    <form id="contact">
+    <form id="contact" method= "POST" onsubmit="return false;">
       <div>
         <label for="prenom">Prénom</label>
         <input type="text" name="prenom" id="prenom" required>
@@ -111,7 +101,7 @@
         <textarea name="message" id="message" cols="30" rows="10" required></textarea>
         <span class="field-error" id="messageError"></span>
       </div>
-      <button type="submit" id="contact-modal-btn">Envoyer</button>
+      <button type = "submit" id="contact-modal-btn">Envoyer</button>
     </form>
   </div>
 </div>
@@ -120,95 +110,9 @@
 <script src="scripts/factories/mediaPhotographer.js"></script>
 <script src="scripts/factories/thephotographer.js"></script>
 <script src="scripts/pages/photographer.js"></script>
+<script src="scripts/factories/contact.js"></script>
+<script src="scripts/utils/fonction.js"></script>
 <script src="https://kit.fontawesome.com/dc83823775.js" crossorigin="anonymous"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Event Listener for the "Contactez-moi" button
-  const contactButton = document.getElementById('contactButton');
-  contactButton.addEventListener('click', function() {
-    displayModal();
-  });
-
-  // Event Listener for the close contact modal button
-  const closeModalButton = document.getElementById('closeModalButton');
-  closeModalButton.addEventListener('click', function() {
-    closeModal();
-  });
-
-  // Function to display an error message
-  function displayErrorMessage(elementId, message) {
-    const errorElement = document.getElementById(elementId);
-    errorElement.textContent = message;
-    errorElement.style.color = 'red';
-  }
-
-  // Function to clear an error message
-  function clearErrorMessage(elementId) {
-    const errorElement = document.getElementById(elementId);
-    errorElement.textContent = '';
-  }
-
-  // Verification for the first name
-  const prenomInput = document.getElementById('prenom');
-  const prenomError = document.getElementById('prenomError');
-
-  prenomInput.addEventListener('input', function() {
-    if (prenomInput.value.trim() === '') {
-      displayErrorMessage('prenomError', 'Veuillez saisir votre prénom.');
-    } else if (prenomInput.value.trim().length < 2) {
-      displayErrorMessage('prenomError', 'Le prénom doit comporter au moins 2 caractères.');
-    } else if (!/^[a-zA-Z]+$/.test(prenomInput.value.trim())) {
-      displayErrorMessage('prenomError', 'Le prénom ne peut pas contenir de chiffres ou de symboles.');
-    } else {
-      clearErrorMessage('prenomError');
-    }
-  });
-
-  // Verification for the last name
-  const nomInput = document.getElementById('nom');
-  const nomError = document.getElementById('nomError');
-
-  nomInput.addEventListener('input', function() {
-    if (nomInput.value.trim() === '') {
-      displayErrorMessage('nomError', 'Veuillez saisir votre nom.');
-    } else if (nomInput.value.trim().length < 2) {
-      displayErrorMessage('nomError', 'Le nom doit comporter au moins 2 caractères.');
-    } else if (!/^[a-zA-Z]+$/.test(nomInput.value.trim())) {
-      displayErrorMessage('nomError', 'Le nom ne peut pas contenir de chiffres ou de symboles.');
-    } else {
-      clearErrorMessage('nomError');
-    }
-  });
-
-  // Verification for the email
-  const emailInput = document.getElementById('email');
-  const emailError = document.getElementById('emailError');
-
-  emailInput.addEventListener('input', function() {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression to validate email address
-
-    if (emailInput.value.trim() === '') {
-      displayErrorMessage('emailError', 'Veuillez saisir votre email.');
-    } else if (!regex.test(emailInput.value.trim())) {
-      displayErrorMessage('emailError', 'Veuillez saisir une adresse email valide.');
-    } else {
-      clearErrorMessage('emailError');
-    }
-  });
-
-  // Verification for the message
-  const messageInput = document.getElementById('message');
-  const messageError = document.getElementById('messageError');
-
-  messageInput.addEventListener('input', function() {
-    if (messageInput.value.trim() === '') {
-      displayErrorMessage('messageError', 'Veuillez saisir votre message.');
-    } else {
-      clearErrorMessage('messageError');
-    }
-  });
-});
-</script>
 </body>
 </html>

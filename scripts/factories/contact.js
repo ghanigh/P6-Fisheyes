@@ -34,12 +34,16 @@ window.addEventListener("keyup", (e) => {
 });
 
 // Récupération des valeurs du formulaire de contact
-  const form = document.getElementById("contact");
-    form.addEventListener("submit", handleSubmit);
+// const buttonForm = document.getElementById("contact-modal-btn");
+// buttonForm.addEventListener("click",handleSubmit);
+    
+const form = document.getElementById("contact");
+form.addEventListener("submit", handleSubmit);
+
   
   function handleSubmit(event) {
-    event.preventDefault();
-  
+  event.preventDefault()
+
     // Récupération des valeurs des champs du formulaire
     const firstName = document.getElementById("prenom").value;
     const lastName = document.getElementById("nom").value;
@@ -57,6 +61,8 @@ window.addEventListener("keyup", (e) => {
   
     // Réinitialiser le formulaire
     form.reset();
+    closeModal();
   }
 
+ 
   
