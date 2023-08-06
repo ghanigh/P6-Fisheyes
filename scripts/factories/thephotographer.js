@@ -35,9 +35,7 @@ function photographerFactory(data) {
   
     return { name, picture, getUserCardDOM };
   }
-  
-  
-  
+
   // Dans le fichier photographer.js
   
   // Déclaration de l'objet photographerGaleryModel
