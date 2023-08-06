@@ -4,13 +4,13 @@
 // eslint-disable-next-line no-unused-vars
 function photographerInfosHeader(photographer) {
 	const photographerHeader = document.querySelector(".photograph-header");
-	const { name, portrait, city, country, tagline } = photographer;
+	const { prenom, nom, mail, message } = photographer;
   
 	const BlocPhotographerProfile = document.createElement("div");
 	BlocPhotographerProfile.classList.add("photographerProfile");
-	BlocPhotographerProfile.innerHTML = `<h1 class="photographerName">${name}</h1>
-										  <p class="photographerCity">${city}, ${country}</p>
-										  <p class="photographerTagline">${tagline}</p>`;
+	BlocPhotographerProfile.innerHTML = `<h1 class="photographerName">${prenom}</h1>
+										  <p class="photographerCity">${nom}, ${email}</p>
+										  <p class="photographerTagline">${message}</p>`;
 	const photographerPortraitContainer = document.createElement("div");
 	photographerPortraitContainer.classList.add("photographer-portrait-container");
 	const photographerPortrait = document.createElement("img");
