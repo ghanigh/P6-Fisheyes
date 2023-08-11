@@ -1,30 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Event Listener for the "Contactez-moi" button
+    // Event Listener pour le bouton "Contactez-moi"
     const contactButton = document.getElementById('contactButton');
     contactButton.addEventListener('click', function() {
       displayModal();
     });
   
-    // Event Listener for the close contact modal button
+    // Event Listener pour fermer le bouton modal
     const closeModalButton = document.getElementById('closeModalButton');
     closeModalButton.addEventListener('click', function() {
       closeModal();
     });
   
-    // Function to display an error message
+    // Fonction pour afficher un message d'erreur
     function displayErrorMessage(elementId, message) {
       const errorElement = document.getElementById(elementId);
       errorElement.textContent = message;
       errorElement.style.color = 'red';
     }
   
-    // Function to clear an error message
+    // Fonction pour effacer un message d'erreur
     function clearErrorMessage(elementId) {
       const errorElement = document.getElementById(elementId);
       errorElement.textContent = '';
     }
   
-    // Verification for the first name
+    // Verification pour le first name
     const prenomInput = document.getElementById('prenom');
     const prenomError = document.getElementById('prenomError');
   
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   
-    // Verification for the last name
+    // Verification pour le last name
     const nomInput = document.getElementById('nom');
     const nomError = document.getElementById('nomError');
   
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   
-    // Verification for the email
+    // Verification pour email
     const emailInput = document.getElementById('email');
     const emailError = document.getElementById('emailError');
   
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   
-    // Verification for the message
+    // Verification du message
     const messageInput = document.getElementById('message');
     const messageError = document.getElementById('messageError');
   
