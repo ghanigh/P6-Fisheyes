@@ -187,7 +187,7 @@ function photographerInfosHeader(photographer) {
 const lightboxModal = document.querySelector(".lightbox-container");
 
 function displayLightbox(idImage) {
-	const imageUrl = "src=assets/media/"+idImage+".png
+	const imageUrl = "src=assets/media/${idImage}"
   const lightboxImage = lightboxModal.querySelector('.lightbox img');
   lightboxImage.setAttribute('src', imageUrl);
 
