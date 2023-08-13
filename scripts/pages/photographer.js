@@ -1,111 +1,96 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
-// Récupère les identifiants des photographes dans l'URL
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const photographerId = parseInt(urlParams.get("id"));
+class Photographer {
+  constructor() {
+    //? Obtenir l'ID du photographe à partir du paramètre de requête de l'URL
+    const url = new URLSearchParams(document.location.search);
+    this.id = parseInt(url.get("id"));
 
-// L'initialisation de l'index photo "Lightbox"
-let lightboxIdx = 0;
+    //? Obtenir les différentes sections de la page du photographe
+    this.photograph_header = document.querySelector(".photograph_section1");
+    this.photograph_filter = document.querySelector(".photograph_section2");
+    this.photograph_article = document.querySelector(".photograph_section3");
+    this.photograph_total = document.querySelector(".photograph_section4");
+    this.photograph_modal = document.querySelector("#contact_modal");
+    this.photograph_lightBox = document.querySelector("#lightBox");
 
-// Récupère les datas des différents photographes avec un fetch
-async function getPhotographer() {
-  const photographers = await fetch("./data/photographers.json")
-    .then((res) => res.json())
-    .then((data) => data.photographers);
-  return {
-    photographer: photographers.find((p) => p.id === photographerId),
-  };
-}
+    //? Créer une nouvelle instance de la classe DataApi avec l'URL du fichier photographers.json
+    // eslint-disable-next-line no-undef
+    this.dataApi = new DataApi(`../photographers.json`);
+  }
 
-// Récupère les datas MEDIA des différents photographes avec un fetch
-async function getMedia() {
-  const media = await fetch("./data/photographers.json")
-    .then((res) => res.json())
-    .then((data) => data.media);
-  return {
-    media: media.filter((m) => m.photographerId === photographerId),
-  };
-}
+  async main() {
+    //? Obtenir les données du photographe par ID à partir de DataApi
+    const photographerDataById = await this.dataApi.getDataById(this.id);
 
-// Page photographe : Afficher les datas liées au profil des photographes
-async function displayDataPhotographer(photographer) {
-  photographerInfosHeader(photographer);
-}
+    //? Obtenir les données des médias du photographe par ID à partir de DataApi
+    const photographerDataMediaById = await this.dataApi.getDataMediaById(
+      this.id
+    );
 
-// Affiche les photos dans la galerie dédiée
-async function displayDataGalery(media) {
-  const photographerGalery = document.querySelector('.photographer-galery');
-  photographerGalery.innerHTML = '';
-  media.forEach((itemMedia, idx) => {
-    const photographerGaleryModel = photographerMediaFactory(itemMedia);
-    const userGaleryCardDOM = photographerGaleryModel.CreateGaleryDom(idx);
-    photographerGalery.appendChild(userGaleryCardDOM);
-  });
-}
+    //? Créer le modèle de section 1 du photographe
+    // eslint-disable-next-line no-undef
+    const templateHeaderSection1 = new PhotographerSection1(
+      photographerDataById
+    );
 
-// Affichage de la Lightbox
-function displayDataLightbox(medias) {
-  const lightbox = document.querySelector('.lightbox');
-  lightbox.innerHTML = '';
-  medias.forEach((itemMedia) => {
-    const photographerLightboxModel = photographerMediaFactory(itemMedia);
-    const userLightboxDOM = photographerLightboxModel.createLightboxDOM();
-    lightbox.appendChild(userLightboxDOM);
-  });
-}
+    //? Créer le modèle de section 2 du photographe
+    // eslint-disable-next-line no-undef
+    const templatefilterSection2 = new PhotographerSection2(
+      photographerDataMediaById,
+      photographerDataById
+    );
 
-// Fonction pour les tris avec le Select
-function sortMedia(media, triValue) {
-  switch (triValue) {
-    case "popularite": {
-      return media.sort((a, b) => b.likes - a.likes);
+
+    //? Créer le modèle de section 3 du photographe pour chaque élément de média et l'ajouter au DOM
+    for (let i = 0; i < photographerDataMediaById.length; i++) {
+      // eslint-disable-next-line no-undef
+      const templateArticleSection3 = new PhotographerSection3(
+        photographerDataMediaById[i],
+        photographerDataById
+      );
+      this.photograph_article.append(
+        templateArticleSection3.createPhotographArticleSection3()
+      );
     }
-    case "date": {
-      return media.sort((a, b) => new Date(a.date) - new Date(b.date));
-    }
-    case "titre": {
-      return media.sort((a, b) => a.title.localeCompare(b.title));
-    }
-    default: {
-      return media;
-    }
+
+    //? Créer le modèle de section 4 du photographe
+    // eslint-disable-next-line no-undef
+    const templateTotalSection4 = new PhotographerSection4(
+      photographerDataMediaById,
+      photographerDataById
+    );
+
+    //? Créer le modèle de la fenêtre modale du photographe
+    // eslint-disable-next-line no-undef
+    const templateModal = new PhotographerModale(photographerDataById);
+
+    //? Créer le modèle de la LightBox du photographe
+    // eslint-disable-next-line no-undef
+    const templateLightBox = new PhotographerLightBox(
+      photographerDataMediaById,
+      photographerDataById
+    );
+
+    //? Ajouter les modèles à leurs sections respectives dans le DOM
+    this.photograph_header.append(
+      templateHeaderSection1.createPhotographHeaderSection1()
+    );
+
+    this.photograph_filter.append(
+      templatefilterSection2.createPhotographFilterSection2()
+    );
+
+    this.photograph_total.append(
+      templateTotalSection4.createPhotographTotalSection4()
+    );
+
+    this.photograph_modal.append(templateModal.createPhotographerModale());
+
+    this.photograph_lightBox.append(
+      templateLightBox.createPhotographerLightBox()
+    );
   }
 }
 
-// L'événement Select et affichage du résultat du tri
-function selectData(media) {
-  const select = document.querySelector('#select');
-  select.addEventListener('change', (e) => {
-    const sortedMedia = sortMedia(media, e.target.value);
-    displayDataGalery(sortedMedia);
-    displayDataLightbox(sortedMedia);
-    setGaleryEvent();
-  });
-}
-
-// ... autres fonctions existantes ...
-function setGaleryEvent() {
-  // Code de la fonction setGaleryEvent
-  // ...
-}
-
-// Fonction pour gérer les événements de la Lightbox
-function setLightboxEvents(mediaLength) {
-  // Ajoutez ici votre code pour gérer les événements de la Lightbox
-}
-
-// Permet de récupérer les informations du photographe et de les afficher en gérant les événements
-async function init() {
-  const { photographer } = await getPhotographer();
-  const { media } = await getMedia();
-  let sortedMedia = sortMedia(media, 'popularite'); // Par défaut, le select est sur "popularite"
-  displayDataPhotographer(photographer);
-  displayDataGalery(sortedMedia);
-  selectData(media);
-  displayDataLightbox(sortedMedia);
-  setLightboxEvents(sortedMedia.length);
-}
-
-init();
-
+//? Créer une nouvelle instance de la classe Photographer et appeler sa méthode main pour rendre la page du photographe
+const photographer = new Photographer();
+photographer.main();

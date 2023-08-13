@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <link href="css/style.css" rel="stylesheet" type="text/css">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-  <title>Fisheye</title>
-</head>
-<body>
+  <!-- Début du Head -->
+  <head>
+    <link href="./structure/home.min.css" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./assets/icons/favicon.png" />
+    <title>Fisheye</title>
+  </head>
+  <!-- Fin du Head -->
 
-<header>
-  <a href="index.html" class="logoHeader">
-    <img src="assets/images/logo.png" class="logo" alt="Fisheye Home Page">
-  </a>
-  <h1>Nos photographes</h1>
-</header>
+  <!-- Début du body -->
+  <body>
+    <!-- Header -->
+    <header tabindex="0" role="banner" aria-label="En-tête de la page">
+      <a href="index.html" title="Lien vers la page d'acceuil"
+        ><img src="./assets/logo/logo.png" alt="logo de Fisheye" class="logo"
+      /></a>
+      <h1 tabindex="0">Nos photographes</h1>
+    </header>
+    <!-- Fin du Hearder -->
 
-<main id="main">
-  <div class="photographer_section"></div>
-</main>
+    <!-- Début du Main -->
+    <main
+      id="main"
+      role="main"
+      aria-label="Contenu de la page principale de la page d'accueil"
+    >
+      <div tabindex="0" class="photographer_section"></div>
+    </main>
+    <!-- Fin du Main -->
 
-<script src="scripts/pages/index.js"></script>
-<script src="scripts/factories/thephotographer.js"></script>
+    <!-- Api -->
+    <script src="./structure/Api.min.js"></script>
 
+    <!-- Template -->
+    <script src="./structure/HomeTemplate.min.js"></script>
 
-</body>
+    <!-- Pages -->
+    <script src="./structure/Home.min.js"></script>
+  </body>
+  <!-- Fin du body -->
 </html>

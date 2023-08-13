@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <!-- Début du Head -->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="../structure/photographers.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+      integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" type="image/png" href="../assets/icons/favicon.png" />
+    <title>Fisheye - photographe</title>
+  </head>
+  <!-- Fin du Head -->
+
+  <!-- Début du body -->
+  <body>
+    <!-- Header -->
+    <header role="banner" aria-label="En-tête de la page">
+      <a href="../index.html" title="Lien vers la page d'acceuil"
+        ><img src="../assets/logo/logo.png" alt="logo de Fisheye" class="logo"
+      /></a>
+    </header>
+    <!-- Fin du Hearder -->
+
+    <!-- Début du Main -->
+    <main
+      id="main"
+      role="main"
+      aria-label="Contenu de la page secondaire de la page photographer"
+    >
+      <!-- Début Section Une -->
+      <section
+        class="photograph_section1"
+        aria-label="En-tête de la section des photographes"
+        tabindex="0"
+      ></section>
+      <!-- Fin Section Une -->
+      <!-- Début Section deux -->
+      <section
+        tabindex="0"
+        class="photograph_section2"
+        aria-label="filtre de la section des photographes"
+      ></section>
+      <!-- Fin Section deux -->
+      <!-- Début Section trois -->
+      <section
+        tabindex="0"
+        class="photograph_section3"
+        aria-label="photo et video de la section des photographes"
+      ></section>
+      <!-- Fin Section trois -->
+      <!-- Début Section quatre -->
+      <section
+        class="photograph_section4"
+        aria-label="prix total et nombres de likes par photos"
+      ></section>
+      <!-- Fin Section quatre -->
+    </main>
+    <!-- Fin du Main -->
+
+    <!-- Début Modal -->
+    <div tabindex="0" id="contact_modal" aria-hidden="true"></div>
+    <!-- Fin Modal -->
+
+    <!-- Début Modal-LightBox -->
+    <div id="lightBox" aria-hidden="true"></div>
+    <!-- Fin Modal-LightBox -->
+
+    <!-- Api -->
+    <script src="../structure/Api.min.js"></script>
+
+    <!-- Templates -->
+    <script src="../structure/HeaderTemplate.min.js"></script>
+    <script src="../structure/FilterTemplate.min.js"></script>
+    <script src="../structure/ArticleTemplate.min.js"></script>
+    <script src="../structure/TotalTemplate.min.js"></script>
+    <script src="../structure/ModalTemplate.min.js"></script>
+    <script src="../structure/LightBoxTemplate.min.js"></script>
+
+    <!-- Factorie -->
+    <script src="../structure/MediaFactory.min.js"></script>
+
+    <!-- Pages -->
+    <script src="../structure/Photographer.min.js"></script>
+
+    <!-- Utils -->
+    <script src="../structure/Modal.min.js"></script>
+    <script src="../structure/Filter.min.js"></script>
+    <script src="../structure/Likes.min.js"></script>
+    <script src="../structure/LightBox.min.js"></script>
+  </body>
+</html>
