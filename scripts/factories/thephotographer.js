@@ -45,7 +45,7 @@ function photographerFactory(data) {
   
     // Fonction pour créer la galerie des photos du photographe
     CreateGaleryDom: function () {
-      // Implémentation de la fonction...
+      let galeryContainer = document.querySelector(".galery__container")
     }
   };
   

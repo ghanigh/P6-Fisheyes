@@ -39,7 +39,7 @@ function photographerInfosHeader(photographer) {
   
 	render() {
 	  if (this.media.image) {
-		return `<img class="imgGalery" src="assets/photos/${this.media.photographerId}/${this.media.image}" alt="${this.media.title}">`;
+		return `<img class="imgGalery" src="assets/photos/${this.media.photographerId}/${this.media.image}" alt="${this.media.title}" id="${this.media.id}">`;
 	  } else {
 		// Affiche de manière conditionnelle les controles de vidéo (non affichés en galerie, affichés en Lightbox)
 		const video = document.createElement('video');
@@ -47,6 +47,7 @@ function photographerInfosHeader(photographer) {
 		video.classList.add('imgGalery');
 		if (this.controls) {
 		  video.setAttribute('controls', '');
+		  video.setAttribute('id',this.media.id);
 		}
 		return video.outerHTML;
 	  }
@@ -57,6 +58,7 @@ function photographerInfosHeader(photographer) {
   function photographerMediaFactory(media) {
 	const { title } = media;
 	let likes = media.likes;
+	
   
 	// DOM lightbox
 	function createLightboxDOM() {
@@ -71,7 +73,7 @@ function photographerInfosHeader(photographer) {
   
 	// DOM galerie
 	function CreateGaleryDom(idx) {
-	  const BlocPhotographerGalery = document.querySelector(".photographer-galery");
+	const BlocPhotographerGalery = document.querySelector(".photographer-galery");
 	  BlocPhotographerGalery.classList.add("container");
 	  const photographerArticle = document.createElement("article");
 	  photographerArticle.classList.add("photographer-galery-item");
@@ -79,10 +81,20 @@ function photographerInfosHeader(photographer) {
 	  photographerMedia.setAttribute('href', "#");
 	  photographerMedia.setAttribute("aria-controls", "modal");
 	  photographerMedia.setAttribute("aria-label", `${title}`);
-	  document.addEventListener('DOMContentLoaded', () => {
-		document.addEventListener('DOMContentLoaded', () => {
+	  const mediaItems = document.querySelectorAll('.imgGalery');
+	  console.log(mediaItems);
+	  mediaItems.forEach((mediaItem, idx) => {
+		mediaItem.addEventListener('click', (event) => {
+		  event.preventDefault(); // Empêche le comportement de lien par défaut
+	
+		  const mediaFactory = new MediaFactory(media, true);
+		  const idImage = mediaItem.getAttribute('id'); // Récupère l'URL de l'image
+	
+		  displayLightbox(idImage); // Ouvre la lightbox avec l'URL de l'image
+		});
+	  });
+		/*document.addEventListener('DOMContentLoaded', () => {
 			const mediaItems = document.querySelectorAll('.photographer-galery-media'); // Sélectionne tous les médias de la galerie
-		  
 			mediaItems.forEach((mediaItem, idx) => {
 			  mediaItem.addEventListener('click', (event) => {
 				event.preventDefault(); // Empêche le comportement de lien par défaut
@@ -93,9 +105,8 @@ function photographerInfosHeader(photographer) {
 				displayLightbox(mediaUrl); // Ouvre la lightbox avec l'URL de l'image
 			  });
 			});
-		  });
+		  });*/
 		  
-});
 
   
 	  // Ajout des informations de la photo
@@ -175,7 +186,8 @@ function photographerInfosHeader(photographer) {
 // Affichage de la modal lightbox
 const lightboxModal = document.querySelector(".lightbox-container");
 
-function displayLightbox(imageUrl) {
+function displayLightbox(idImage) {
+	const imageUrl = "src=assets/media/"+idImage+".png
   const lightboxImage = lightboxModal.querySelector('.lightbox img');
   lightboxImage.setAttribute('src', imageUrl);
 
