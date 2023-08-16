@@ -1,101 +1,91 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <!-- Début du Head -->
+  <!-- Début de la section Head -->
   <head>
+    <!-- Métadonnées et liens de styles -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="../structure/photographers.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    <link href="../structure/photographers.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
       integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
-      crossorigin="anonymous"
-    />
+      crossorigin="anonymous" />
     <link rel="icon" type="image/png" href="../assets/icons/favicon.png" />
     <title>Fisheye - photographe</title>
   </head>
-  <!-- Fin du Head -->
+  <!-- Fin de la section Head -->
 
-  <!-- Début du body -->
+  <!-- Début de la section Body -->
   <body>
-    <!-- Header -->
+    <!-- En-tête -->
     <header role="banner" aria-label="En-tête de la page">
-      <a href="../index.html" title="Lien vers la page d'acceuil"
-        ><img src="../assets/logo/logo.png" alt="logo de Fisheye" class="logo"
-      /></a>
+      <a href="../index.html" title="Lien vers la page d'accueil">
+        <img src="../assets/logo/logo.png" alt="logo de Fisheye" class="logo" />
+      </a>
     </header>
-    <!-- Fin du Hearder -->
+    <!-- Fin de l'en-tête -->
 
-    <!-- Début du Main -->
+    <!-- Début de la section Main -->
     <main
       id="main"
       role="main"
       aria-label="Contenu de la page secondaire de la page photographer"
     >
-      <!-- Début Section Une -->
+      <!-- Section Une : En-tête des photographes -->
       <section
         class="photograph_section1"
         aria-label="En-tête de la section des photographes"
         tabindex="0"
       ></section>
-      <!-- Fin Section Une -->
-      <!-- Début Section deux -->
+      <!-- Fin de la section Une -->
+
+      <!-- Section Deux : Filtre des photographes -->
       <section
         tabindex="0"
         class="photograph_section2"
-        aria-label="filtre de la section des photographes"
+        aria-label="Filtre de la section des photographes"
       ></section>
-      <!-- Fin Section deux -->
-      <!-- Début Section trois -->
+      <!-- Fin de la section Deux -->
+
+      <!-- Section Trois : Photos et vidéos des photographes -->
       <section
         tabindex="0"
         class="photograph_section3"
-        aria-label="photo et video de la section des photographes"
+        aria-label="Photos et vidéos de la section des photographes"
       ></section>
-      <!-- Fin Section trois -->
-      <!-- Début Section quatre -->
+      <!-- Fin de la section Trois -->
+
+      <!-- Section Quatre : Prix total et nombre de likes par photos -->
       <section
         class="photograph_section4"
-        aria-label="prix total et nombres de likes par photos"
+        aria-label="Prix total et nombre de likes par photos"
       ></section>
-      <!-- Fin Section quatre -->
+      <!-- Fin de la section Quatre -->
     </main>
-    <!-- Fin du Main -->
+    <!-- Fin de la section Main -->
 
-    <!-- Début Modal -->
+    <!-- Modal de contact -->
     <div tabindex="0" id="contact_modal" aria-hidden="true"></div>
-    <!-- Fin Modal -->
+    <!-- Fin du modal de contact -->
 
-    <!-- Début Modal-LightBox -->
+    <!-- Modal LightBox -->
     <div id="lightBox" aria-hidden="true"></div>
-    <!-- Fin Modal-LightBox -->
+    <!-- Fin du modal LightBox -->
 
-    <!-- Api -->
+    <!-- Chargement des scripts -->
     <script src="../structure/Api.min.js"></script>
-
-    <!-- Templates -->
     <script src="../structure/HeaderTemplate.min.js"></script>
     <script src="../structure/FilterTemplate.min.js"></script>
     <script src="../structure/ArticleTemplate.min.js"></script>
     <script src="../structure/TotalTemplate.min.js"></script>
     <script src="../structure/ModalTemplate.min.js"></script>
     <script src="../structure/LightBoxTemplate.min.js"></script>
-
-    <!-- Factorie -->
     <script src="../structure/MediaFactory.min.js"></script>
-
-    <!-- Pages -->
     <script src="../structure/Photographer.min.js"></script>
-
-    <!-- Utils -->
     <script src="../structure/Modal.min.js"></script>
     <script src="../structure/Filter.min.js"></script>
     <script src="../structure/Likes.min.js"></script>
     <script src="../structure/LightBox.min.js"></script>
   </body>
+  <!-- Fin de la section Body -->
 </html>
