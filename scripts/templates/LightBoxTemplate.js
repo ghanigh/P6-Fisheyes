@@ -30,6 +30,7 @@ class PhotographerLightBox {
 
     // Ajout du contenu à la div créée
     photographerLightBox.innerHTML = lightBoxPhotographer;
+    document.querySelector('.button-next').focus();
 
     setTimeout(() => {
       // Boucle pour chaque média du photographe
